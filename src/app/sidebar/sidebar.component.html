@@ -1,0 +1,23 @@
+<div class="sidebar">
+  <div class="sidebar-header">
+    <h2>VSM</h2>
+  </div>
+  <ul class="sidebar-links">
+    <li><a routerLink=""><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+    <li><a (click)="ToggleService()"><i class="{{serviceArrow}}"></i> Service Centers</a></li>
+    <div *ngIf="displayService">
+      <li><a routerLink="add-service"><i class="fas fa-plus-circle"></i> Add Service Center</a></li>
+      <li><a routerLink="delete-service"><i class="fas fa-minus-circle"></i> Delete Service Center</a></li>
+      <li><a routerLink="get-service"><i class="fas fa-search"></i> Get Service Center</a></li>
+      <li><a routerLink="update-service"><i class="fas fa-edit"></i> Update Service Center</a></li>
+    </div>
+    <li><a (click)="ToggleVehicle()"><i class="{{vehicleArrow}}"></i> Vehicles</a></li>
+    <div *ngIf="displayVehicle">
+      <li><a routerLink="add-vehicle"><i class="fas fa-plus-circle"></i> Add Vehicle</a></li>
+      <li><a routerLink="delete-vehicle"><i class="fas fa-minus-circle"></i> Delete Vehicle</a></li>
+      <li><a routerLink="get-vehicle"><i class="fas fa-search"></i> Get Vehicle</a></li>
+      <li><a routerLink="update-vehicle"><i class="fas fa-edit"></i> Update Vehicle</a></li>
+      <li><a routerLink="reports"><i class="fas fa-chart-bar"></i> Reports</a></li>
+    </div>
+  </ul>
+</div>

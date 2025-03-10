@@ -1,0 +1,10 @@
+<div class="container mt-5">
+    <h2 class="mb-4 text-center">Delete Vehicle</h2>
+    <form>
+      <div class="form-group mb-3">
+        <label for="vin">VIN:</label>
+        <input type="text" id="vin" [(ngModel)]="VIN" name="vin" class="form-control" required>
+        <button (click)="deleteVehicle()" class="btn btn-danger btn-block mt-2">Delete Vehicle</button>
+      </div>
+    </form>
+  </div>
