@@ -1,28 +1,15 @@
-<p>update-service-center works!</p>
-<div class="container mt-5">
-    <h2 class="mb-4 text-center">Update Vehicle</h2>
-    <form>
-      <div class="form-group mb-3">
-        <label for="vin">VIN:</label>
-        <input type="text" id="vin" [(ngModel)]="VIN" name="vin" class="form-control" required>
-        <button (click)="GetCurrentVehicle()" class="btn btn-secondary mt-2">Get Vehicle</button>
-      </div>
-      <div class="form-group mb-3">
-        <label for="serviceCenterId">Service Center ID:</label>
-        <input type="text" id="servicecenterid" [(ngModel)]="vehicle.serviceCenterId" name="servicecenterid" class="form-control" required>
-      </div>
-      <div class="form-group mb-3">
-        <label for="model">Model:</label>
-        <input type="text" id="model" [(ngModel)]="vehicle.model" name="model" class="form-control" required>
-      </div>
-      <div class="form-group mb-3">
-        <label for="status">Status:</label>
-        <input type="text" id="status" [(ngModel)]="vehicle.status" name="status" class="form-control" required>
-      </div>
-      <div class="form-group mb-3">
-        <label for="lastActionDate">Last Action Date:</label>
-        <input type="date" id="lastActionDate" [(ngModel)]="vehicle.lastActionDate" name="lastActionDate" class="form-control" required>
-      </div>
-      <button (click)="updateVehicleDetails()" class="btn btn-primary btn-block">Update Vehicle</button>
-    </form>
-  </div>
+<div class="container">
+  <h2 class="title">Update Vehicle</h2>
+  <form>
+    <div class="form-group">
+      <label for="id">Service Center ID:</label>
+      <input type="text" id="id" [(ngModel)]="serviceCenter.id" name="id" value="{{serviceCenter.id}}" class="form-control" required>
+      <button (click)="GetServiceCenterDetails()" class="btn btn-secondary mt-2">Get Service Center</button>
+    </div>
+    <div class="form-group">
+      <label for="name">Service Center Name:</label>
+      <input type="text" id="name" [(ngModel)]="serviceCenter.name" name="name" value="{{serviceCenter.name}}" class="form-control" required>
+    </div>
+    <button (click)="UpdateServiceCenter()" class="btn btn-primary">Update Vehicle</button>
+  </form>
+</div>

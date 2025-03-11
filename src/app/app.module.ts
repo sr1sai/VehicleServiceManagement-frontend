@@ -5,19 +5,16 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { DirectivesDirective } from './Directive/directives.directive';
-import { PipesPipe } from './Pipe/pipes.pipe';
 import { ServiceCenterModule } from './service-center/service-center.module';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { VehicleModule } from './vehicle/vehicle.module';
-
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     SidebarComponent,
-    DirectivesDirective,
-    PipesPipe
+    DirectivesDirective
   ],
   imports: [
     BrowserModule,

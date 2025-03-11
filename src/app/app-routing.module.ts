@@ -11,7 +11,7 @@ import { GetVehicleComponent } from './vehicle/get-vehicle/get-vehicle.component
 import { UpdateVehicleComponent } from './vehicle/update-vehicle/update-vehicle.component';
 
 const routes: Routes = [
-  { path: '', component: SidebarComponent},
+  { path: '', component: GetVehicleComponent},
   { path: 'add-vehicle', component: AddVehicleComponent},
   { path: 'delete-vehicle', component: DeleteVehicleComponent},
   { path: 'get-vehicle', component: GetVehicleComponent},

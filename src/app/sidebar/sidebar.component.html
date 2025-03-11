@@ -3,7 +3,6 @@
     <h2>VSM</h2>
   </div>
   <ul class="sidebar-links">
-    <li><a routerLink=""><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
     <li><a (click)="ToggleService()"><i class="{{serviceArrow}}"></i> Service Centers</a></li>
     <div *ngIf="displayService">
       <li><a routerLink="add-service"><i class="fas fa-plus-circle"></i> Add Service Center</a></li>

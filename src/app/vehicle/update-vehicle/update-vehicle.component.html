@@ -1,27 +1,27 @@
-<div class="container mt-5">
-  <h2 class="mb-4 text-center">Update Vehicle</h2>
+<div class="container">
+  <h2 class="title">Update Vehicle</h2>
   <form>
-    <div class="form-group mb-3">
+    <div class="form-group">
       <label for="vin">VIN:</label>
       <input type="text" id="vin" [(ngModel)]="VIN" name="vin" class="form-control" required>
-      <button (click)="GetCurrentVehicle()" class="btn btn-secondary mt-2">Get Vehicle</button>
+      <button (click)="GetCurrentVehicle()" class="btn btn-secondary">Get Vehicle</button>
     </div>
-    <div class="form-group mb-3">
+    <div class="form-group">
       <label for="serviceCenterId">Service Center ID:</label>
       <input type="text" id="servicecenterid" [(ngModel)]="vehicle.serviceCenterId" name="servicecenterid" class="form-control" required>
     </div>
-    <div class="form-group mb-3">
+    <div class="form-group">
       <label for="model">Model:</label>
       <input type="text" id="model" [(ngModel)]="vehicle.model" name="model" class="form-control" required>
     </div>
-    <div class="form-group mb-3">
+    <div class="form-group">
       <label for="status">Status:</label>
       <input type="text" id="status" [(ngModel)]="vehicle.status" name="status" class="form-control" required>
     </div>
-    <div class="form-group mb-3">
+    <div class="form-group">
       <label for="lastActionDate">Last Action Date:</label>
       <input type="date" id="lastActionDate" [(ngModel)]="vehicle.lastActionDate" name="lastActionDate" class="form-control" required>
     </div>
-    <button (click)="updateVehicleDetails()" class="btn btn-primary btn-block">Update Vehicle</button>
+    <button (click)="updateVehicleDetails()" class="btn btn-primary">Update Vehicle</button>
   </form>
 </div>

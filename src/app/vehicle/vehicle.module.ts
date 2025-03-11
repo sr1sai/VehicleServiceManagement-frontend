@@ -6,6 +6,7 @@ import { GetVehicleComponent } from './get-vehicle/get-vehicle.component';
 import { DeleteVehicleComponent } from './delete-vehicle/delete-vehicle.component';
 import { UpdateVehicleComponent } from './update-vehicle/update-vehicle.component';
 import { RouterModule } from '@angular/router';
+import { UppercasePipe } from '../Pipe/uppercase.pipe';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import { RouterModule } from '@angular/router';
     GetVehicleComponent,
     DeleteVehicleComponent,
     UpdateVehicleComponent,
+    UppercasePipe
   ],
   imports: [
     CommonModule,
@@ -20,8 +22,14 @@ import { RouterModule } from '@angular/router';
     RouterModule
   ],
   providers: [
+    UppercasePipe
   ],
   exports: [
+    AddVehicleComponent,
+    GetVehicleComponent,
+    DeleteVehicleComponent,
+    UpdateVehicleComponent,
+    UppercasePipe
   ]
 })
 export class VehicleModule { }

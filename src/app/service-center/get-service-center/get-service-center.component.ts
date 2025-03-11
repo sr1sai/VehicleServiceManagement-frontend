@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { ServiceCenter } from '../../Models/ServiceCenter';
+import { CURDService } from '../../Service/curd.service';
 
 @Component({
   selector: 'app-get-service-center',
@@ -7,5 +9,13 @@ import { Component } from '@angular/core';
   styleUrl: './get-service-center.component.css'
 })
 export class GetServiceCenterComponent {
+  constructor(private curdService: CURDService) {}
+
+  servicesCenters: ServiceCenter[] | null = [];
+
+  GetServiceCenters(): void{
+    this.servicesCenters=this.curdService.GetServiceCenters();
+  }
+
 
 }

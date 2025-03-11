@@ -1,22 +1,26 @@
-<div class="container mt-5">
-  <h2 class="mb-4 text-center">Add Vehicle</h2>
+<div class="container">
+  <h2 class="title">Add Vehicle</h2>
   <form (ngSubmit)="addVehicle()">
-    <div class="form-group mb-3">
+    <div class="form-group">
+      <label for="scid">Service Center ID:</label>
+      <input type="number" id="scid" [(ngModel)]="vehicle.serviceCenterId" name="sccid" class="form-control" required>
+    </div>
+    <div class="form-group">
       <label for="vin">VIN:</label>
       <input type="text" id="vin" [(ngModel)]="vehicle.VIN" name="vin" class="form-control" required>
     </div>
-    <div class="form-group mb-3">
+    <div class="form-group">
       <label for="model">Model:</label>
       <input type="text" id="model" [(ngModel)]="vehicle.model" name="model" class="form-control" required>
     </div>
-    <div class="form-group mb-3">
+    <div class="form-group">
       <label for="status">Status:</label>
       <input type="text" id="status" [(ngModel)]="vehicle.status" name="status" class="form-control" required>
     </div>
-    <div class="form-group mb-3">
+    <div class="form-group">
       <label for="lastActionDate">Last Action Date:</label>
       <input type="date" id="lastActionDate" [(ngModel)]="vehicle.lastActionDate" name="lastActionDate" class="form-control" required>
     </div>
-    <button type="submit" class="btn btn-primary btn-block">Add Vehicle</button>
+    <button type="submit" class="btn btn-primary">Add Vehicle</button>
   </form>
 </div>

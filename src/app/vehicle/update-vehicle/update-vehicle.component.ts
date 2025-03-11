@@ -33,7 +33,7 @@ export class UpdateVehicleComponent {
   }
 
   updateVehicleDetails(): void{
-    if(this.curdService.UpdateVehicleStatus(this.vehicle.VIN, this.vehicle.status) && this.curdService.UpdateVehicleServiceCenter(this.vehicle.VIN, this.vehicle.serviceCenterId)) {
+    if(this.curdService.UpdateVehicle(this.vehicle.VIN, this.vehicle)) {
       alert('Vehicle details updated successfully');
     }
     else {
