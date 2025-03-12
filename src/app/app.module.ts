@@ -9,12 +9,16 @@ import { ServiceCenterModule } from './service-center/service-center.module';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { VehicleModule } from './vehicle/vehicle.module';
+import { HomeComponent } from './home/home.component';
+import { LoginComponent } from './login/login.component';
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     SidebarComponent,
-    DirectivesDirective
+    DirectivesDirective,
+    HomeComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

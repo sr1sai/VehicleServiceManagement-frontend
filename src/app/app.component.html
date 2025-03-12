@@ -1,9 +1,2 @@
-<div class="wrapper">
-  <app-navbar></app-navbar>
-  <div class="main-content">
-    <app-sidebar></app-sidebar>
-    <div class="content">
-      <router-outlet></router-outlet>
-    </div>
-  </div>
-</div>
+<app-login *ngIf="!vaildUser"></app-login>
+<app-home *ngIf="vaildUser"></app-home>
