@@ -11,6 +11,7 @@ import { RouterModule } from '@angular/router';
 import { VehicleModule } from './vehicle/vehicle.module';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,7 +27,8 @@ import { LoginComponent } from './login/login.component';
     FormsModule,
     RouterModule,
     ServiceCenterModule,
-    VehicleModule
+    VehicleModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
