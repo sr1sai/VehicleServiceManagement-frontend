@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { APIService } from '../Service/api.service';
 
 @Component({
   selector: 'app-login',
@@ -8,11 +7,10 @@ import { APIService } from '../Service/api.service';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-  constructor(private api:APIService) { }
-  username: string ="";
-  password: string="";
+  username: any;
+  password: any;
   onSubmit() {
-    console.log(this.api.ValidateUser(this.username,this.password));
+    throw new Error('Method not implemented.');
   }
 
 }
