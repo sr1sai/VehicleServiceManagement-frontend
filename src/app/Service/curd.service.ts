@@ -20,10 +20,10 @@ export class CURDService {
     return StaticData.serviceCenters.find(sc => sc.id == id) || null;
   }
   GetVehicleByVin(vin:string):Vehicle | null {
-    return StaticData.vehicles.find(v => v.VIN === vin) || null;
+    return StaticData.vehicles.find(v => v.vin == vin) || null;
   }
   UpdateVehicle(VIN: string, newVehicle: Vehicle): boolean {
-    const index = StaticData.vehicles.findIndex(v => v.VIN === VIN);
+    const index = StaticData.vehicles.findIndex(v => v.vin == VIN);
     if (index >= 0) {
       StaticData.vehicles.splice(index, 1, newVehicle);
       return true;
@@ -49,13 +49,13 @@ export class CURDService {
   UpdateVehicleServiceCenter(vin:string, serviceCenterId:number):boolean {
     const vehicle = this.GetVehicleByVin(vin);
     if(vehicle) {
-      vehicle.serviceCenterId = serviceCenterId;
+      vehicle.service_center_id = serviceCenterId;
       return true;
     }
     return false;
   }
   AddVehicle(vehicle:Vehicle):boolean {
-    if(this.GetVehicleByVin(vehicle.VIN)) {
+    if(this.GetVehicleByVin(vehicle.vin)) {
       return false;
     }
     StaticData.vehicles.push(vehicle);
@@ -70,7 +70,7 @@ export class CURDService {
     return true;
   }
   DeleteVehicle(vin:string):boolean {
-    const index = StaticData.vehicles.findIndex(v => v.VIN === vin);
+    const index = StaticData.vehicles.findIndex(v => v.vin === vin);
     if(index >= 0) {
       StaticData.vehicles.splice(index, 1);
       return true;
@@ -82,7 +82,7 @@ export class CURDService {
     if (index >= 0) {
       StaticData.serviceCenters.splice(index, 1);
       // Delete all vehicles associated with this service center
-      StaticData.vehicles = StaticData.vehicles.filter(v => v.serviceCenterId != id);
+      StaticData.vehicles = StaticData.vehicles.filter(v => v.service_center_id != id);
       return true;
     }
     return false;

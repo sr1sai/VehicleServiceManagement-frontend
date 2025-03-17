@@ -9,17 +9,17 @@ import { ServiceCenterModule } from './service-center/service-center.module';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { VehicleModule } from './vehicle/vehicle.module';
-import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { UnAuthorizedComponent } from './un-authorized/un-authorized.component';
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     SidebarComponent,
     DirectivesDirective,
-    HomeComponent,
-    LoginComponent
+    LoginComponent,
+    UnAuthorizedComponent
   ],
   imports: [
     BrowserModule,

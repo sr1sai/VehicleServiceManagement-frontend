@@ -9,9 +9,10 @@ import { AddVehicleComponent } from './vehicle/add-vehicle/add-vehicle.component
 import { DeleteVehicleComponent } from './vehicle/delete-vehicle/delete-vehicle.component';
 import { GetVehicleComponent } from './vehicle/get-vehicle/get-vehicle.component';
 import { UpdateVehicleComponent } from './vehicle/update-vehicle/update-vehicle.component';
+import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
-  { path: '', component: GetVehicleComponent},
+  { path: 'Login', component: LoginComponent},
   { path: 'add-vehicle', component: AddVehicleComponent},
   { path: 'delete-vehicle', component: DeleteVehicleComponent},
   { path: 'get-vehicle', component: GetVehicleComponent},

@@ -1,7 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Vehicle } from '../../Models/Vehicle';
 import { CURDService } from '../../Service/curd.service';
 import { UppercasePipe } from '../../Pipe/uppercase.pipe';
+import { APIService } from '../../Service/api.service';
+import { Router } from '@angular/router';
+import { ServiceCenter } from '../../Models/ServiceCenter';
 
 @Component({
   selector: 'app-add-vehicle',
@@ -9,28 +12,45 @@ import { UppercasePipe } from '../../Pipe/uppercase.pipe';
   templateUrl: './add-vehicle.component.html',
   styleUrl: './add-vehicle.component.css'
 })
-
-
-export class AddVehicleComponent {
-  
+export class AddVehicleComponent implements OnInit {
   vehicle: Vehicle = {
-    serviceCenterId: 0,
-    VIN: '',
+    service_center_id: 0,
+    vin: '',
     model: '',
     status: '',
-    lastActionDate: new Date()
+    date: new Date()
+  };
+  serviceCenters: ServiceCenter[] = [];
+  selectedServiceCenter: ServiceCenter={
+    id:0,
+    name:''
   };
 
-  constructor(private curdService: CURDService, private uppercase: UppercasePipe) {}
 
-  addVehicle(): void {
-    if(this.vehicle){
-      this.vehicle.VIN = String(this.uppercase.transform(this.vehicle.VIN));
+  constructor(private curdService: CURDService, private uppercase: UppercasePipe, private api: APIService, private router: Router) {}
+
+  ngOnInit() {
+    this.api.GetServiceCenters().subscribe((data: ServiceCenter[]) => {
+      this.serviceCenters = data;
+    });
+  }
+
+  addVehicle() {
+    this.selectedServiceCenter  = this.serviceCenters.find(center => center.name === this.selectedServiceCenter.name) || { id: 0, name: '' };
+    if (this.selectedServiceCenter) {
+      this.vehicle.service_center_id = this.selectedServiceCenter.id;
     }
-    if (this.curdService.AddVehicle(this.vehicle)) {
-      alert('Vehicle added successfully');
-    } else {
-      alert('Vehicle with VIN already exists');
-    }
+    console.log(this.vehicle);
+    this.api.AddVehicle(this.vehicle).subscribe(
+      (response) => {
+        alert('Vehicle added successfully');
+        this.router.navigate(['/get-vehicle']);
+        console.log(response);
+      },
+      (error) => {
+        alert('Error while adding vehicle');
+        console.log(error);
+      }
+    );
   }
 }

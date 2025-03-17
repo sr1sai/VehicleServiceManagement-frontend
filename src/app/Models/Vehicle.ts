@@ -1,7 +1,7 @@
 export interface Vehicle {
-    serviceCenterId:number,
-    VIN:string,
+    service_center_id:number,
+    vin:string,
     model:string,
     status:string,
-    lastActionDate:Date
+    date:Date
 }

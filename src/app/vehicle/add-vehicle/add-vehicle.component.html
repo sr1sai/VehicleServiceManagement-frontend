@@ -2,12 +2,14 @@
   <h2 class="title">Add Vehicle</h2>
   <form (ngSubmit)="addVehicle()">
     <div class="form-group">
-      <label for="scid">Service Center ID:</label>
-      <input type="number" id="scid" [(ngModel)]="vehicle.serviceCenterId" name="sccid" class="form-control" required>
+      <label for="serviceCenter">Service Center:</label>
+      <select id="serviceCenter" [(ngModel)]="selectedServiceCenter.name" name="serviceCenter" class="form-control" required>
+        <option *ngFor="let center of serviceCenters" [value]="center.name">{{ center.name }}</option>
+      </select>
     </div>
     <div class="form-group">
       <label for="vin">VIN:</label>
-      <input type="text" id="vin" [(ngModel)]="vehicle.VIN" name="vin" class="form-control" required>
+      <input type="text" id="vin" [(ngModel)]="vehicle.vin" name="vin" class="form-control" required>
     </div>
     <div class="form-group">
       <label for="model">Model:</label>
@@ -19,7 +21,7 @@
     </div>
     <div class="form-group">
       <label for="lastActionDate">Last Action Date:</label>
-      <input type="date" id="lastActionDate" [(ngModel)]="vehicle.lastActionDate" name="lastActionDate" class="form-control" required>
+      <input type="date" id="lastActionDate" [(ngModel)]="vehicle.date" name="lastActionDate" class="form-control" required>
     </div>
     <button type="submit" class="btn btn-primary">Add Vehicle</button>
   </form>

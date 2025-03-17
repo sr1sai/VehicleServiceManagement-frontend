@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { APIService } from '../Service/api.service';
+import { UserService } from '../Service/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -8,17 +10,29 @@ import { APIService } from '../Service/api.service';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-  constructor(private api:APIService){}
-  username: any;
-  password: any;
+  username: string = '';
+  password: string = '';
+
+  constructor(private api: APIService, private userService: UserService, private router: Router) {}
+
   onSubmit() {
-    console.log(this.username,this.password);
-    console.log(this.api.ValidateUser(this.username,this.password));
+    console.log(this.username, this.password);
     this.api.ValidateUser(this.username, this.password).subscribe(
       (isValid: boolean) => {
         if (isValid) {
-          alert('Invalid');
+          this.api.GetUserRole(this.username, this.password).subscribe(
+            (role: number) => {
+              const userDetails = {
+                username: this.username,
+                password: this.password,
+                role: role
+              };
+              this.userService.setUser(userDetails);
+              this.router.navigate(['get-vehicle']);
+            }
+          );
         } else {
+          this.userService.clearUser();
           alert('Invalid credentials');
         }
       },
@@ -28,5 +42,4 @@ export class LoginComponent {
       }
     );
   }
-
 }

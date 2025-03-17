@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, model } from '@angular/core';
 import { Vehicle } from '../../Models/Vehicle';
 import { CURDService } from '../../Service/curd.service';
+import { APIService } from '../../Service/api.service';
+import { ServiceCenter } from '../../Models/ServiceCenter';
 
 @Component({
   selector: 'app-get-vehicle',
@@ -10,9 +12,22 @@ import { CURDService } from '../../Service/curd.service';
 })
 export class GetVehicleComponent {
   vehicles!: Vehicle[];
+  displayVehicles!: any[];
+  serviceCenters!: ServiceCenter[];
+  serviceCenterDict: { [id: number]: string } = {};
   count=0;
-  constructor(private curdService: CURDService) { }
-  getAllVehicle(): void {
-    this.vehicles = this.curdService.GetVehicles();
+  constructor(private curdService: CURDService,private api:APIService) {}
+  
+   ngOnInit() {
+    console.log(this.serviceCenterDict);
+    this.api.GetVehicles().subscribe((data: Vehicle[]) => {
+      this.api.GetServiceCenters().subscribe((centers: ServiceCenter[]) => {
+        centers.forEach((center: ServiceCenter) => {
+          this.serviceCenterDict[center.id] = center.name;
+        });
+      });
+
+      this.vehicles=data;
+    });
   }
 }

@@ -1,14 +1,13 @@
 <div class="container mt-5">
   <h2 class="title">Get All Vehicles</h2>
-  <button (click)="getAllVehicle()" class="btn btn-primary">Get All Vehicles</button>
   <div class="card-display">
     <div *ngFor="let vehicle of vehicles; let i = index" class="vehicle-card mb-3 p-3 border rounded">
       <p><strong>S. No.:</strong> {{ i + 1 }}</p>
-      <p><strong>Service Center ID:</strong> {{ vehicle.serviceCenterId }}</p>
-      <p><strong>VIN:</strong> {{ vehicle.VIN }}</p>
+      <p><strong>Service Center ID:</strong> {{ serviceCenterDict[vehicle.service_center_id] }}</p>
+      <p><strong>VIN:</strong> {{ vehicle.vin }}</p>
       <p><strong>Model:</strong> {{ vehicle.model }}</p>
       <p><strong>Status:</strong> {{ vehicle.status }}</p>
-      <p><strong>Last Action Date:</strong> {{ vehicle.lastActionDate | date }}</p>
+      <p><strong>Last Action Date:</strong> {{ vehicle.date | date }}</p>
       <hr>
     </div>
   </div>

@@ -13,11 +13,11 @@ export class UpdateVehicleComponent {
   constructor(private curdService: CURDService) { }
 
   vehicle: Vehicle = {
-    serviceCenterId: 0,
-    VIN: '',
+    service_center_id: 0,
+    vin: '',
     model: '',
     status: '',
-    lastActionDate: new Date()
+    date: new Date()
   };
 
   VIN!:string;
@@ -33,7 +33,7 @@ export class UpdateVehicleComponent {
   }
 
   updateVehicleDetails(): void{
-    if(this.curdService.UpdateVehicle(this.vehicle.VIN, this.vehicle)) {
+    if(this.curdService.UpdateVehicle(this.vehicle.vin, this.vehicle)) {
       alert('Vehicle details updated successfully');
     }
     else {
