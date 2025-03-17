@@ -47,4 +47,14 @@ export class APIService {
     return this.http.delete(deleteVehicleUrl, { responseType: 'text' });
    }
 
+   GetVehicleByVIN(VIN:string):Observable<Vehicle>{
+    const getVehicleUrl = `${this.url}Get/GetVehicleByVIN?VIN=${VIN}`;
+    return this.http.get<Vehicle>(getVehicleUrl);
+   }
+
+   UpdateVehicle(vehicle:Vehicle){
+    const updateVehicleUrl = `${this.url}Update/UpdateVehicleByVIN?VIN=${vehicle.vin}`;
+    return this.http.put(updateVehicleUrl, vehicle, { responseType: 'text' });
+   }
+
 }

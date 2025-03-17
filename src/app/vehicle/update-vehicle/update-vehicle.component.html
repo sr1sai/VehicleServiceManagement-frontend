@@ -7,8 +7,10 @@
       <button (click)="GetCurrentVehicle()" class="btn btn-secondary">Get Vehicle</button>
     </div>
     <div class="form-group">
-      <label for="serviceCenterId">Service Center ID:</label>
-      <input type="text" id="servicecenterid" [(ngModel)]="vehicle.service_center_id" name="servicecenterid" class="form-control" required>
+      <label for="serviceCenter">Service Center:</label>
+      <select id="serviceCenter" [(ngModel)]="selectedServiceCenter.name" name="serviceCenter" class="form-control" required>
+        <option *ngFor="let center of serviceCenters" [value]="center.name">{{ center.name }}</option>
+      </select>
     </div>
     <div class="form-group">
       <label for="model">Model:</label>
