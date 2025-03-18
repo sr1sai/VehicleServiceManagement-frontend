@@ -1,6 +1,5 @@
 <div class="container">
     <h2 class="title">Get All Service Centers</h2>
-    <button (click)="GetServiceCenters()" class="btn btn-primary">Get All Service Centers</button>
     <div class="card-display">
       <div *ngFor="let center of servicesCenters; let i = index" class="center-card">
         <p><strong>S. No.:</strong> {{ i + 1 }}</p>

@@ -57,4 +57,25 @@ export class APIService {
     return this.http.put(updateVehicleUrl, vehicle, { responseType: 'text' });
    }
 
+   AddServcieCenter(serviceCenter:ServiceCenter){
+    const addServiceCenterUrl = `${this.url}Add/AddServiceCenter`;
+    return this.http.post(addServiceCenterUrl, serviceCenter, { responseType: 'text' });
+   }
+
+   UpdateServiceCenter(id:number,serviceCenter:ServiceCenter){
+    const updateServiceCenterUrl = `${this.url}Update/UpdateServiceCenterByID?id=${id}`;
+    return this.http.put(updateServiceCenterUrl, serviceCenter, { responseType: 'text' });
+   }
+
+   DeleteServiceCenter(id:number){
+    const deleteServiceCenterUrl = `${this.url}Delete/DeleteServiceCenterByID?id=${id}`;
+    return this.http.delete(deleteServiceCenterUrl, { responseType: 'text' });
+   }
+
+   DeleteVehicleByServiceCenterID(id:number){
+    const deleteVehicleByServiceCenterIDUrl = `${this.url}Delete/DeleteVehiclesByServiceCenterID?id=${id}`;
+    return this.http.delete(deleteVehicleByServiceCenterIDUrl, { responseType: 'text' });
+   }
+
+
 }
