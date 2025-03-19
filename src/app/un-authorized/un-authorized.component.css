@@ -1,0 +1,36 @@
+.unauthorized-container {
+  text-align: center;
+  padding: 50px;
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 5px;
+  max-width: 600px;
+  margin: 50px auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.unauthorized-container h1 {
+  font-size: 2.5em;
+  color: #dc3545;
+  margin-bottom: 20px;
+}
+
+.unauthorized-container p {
+  font-size: 1.2em;
+  color: #6c757d;
+  margin-bottom: 20px;
+}
+
+.unauthorized-container button {
+  padding: 10px 20px;
+  font-size: 1em;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.unauthorized-container button:hover {
+  background-color: #0056b3;
+}

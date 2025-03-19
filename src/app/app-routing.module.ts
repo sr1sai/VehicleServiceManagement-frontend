@@ -10,6 +10,8 @@ import { DeleteVehicleComponent } from './vehicle/delete-vehicle/delete-vehicle.
 import { GetVehicleComponent } from './vehicle/get-vehicle/get-vehicle.component';
 import { UpdateVehicleComponent } from './vehicle/update-vehicle/update-vehicle.component';
 import { LoginComponent } from './login/login.component';
+import { managerAccessGuard } from './Gaurds/manager-access.guard';
+import { UnAuthorizedComponent } from './un-authorized/un-authorized.component';
 
 const routes: Routes = [
   { path: 'Login', component: LoginComponent},
@@ -17,10 +19,11 @@ const routes: Routes = [
   { path: 'delete-vehicle', component: DeleteVehicleComponent},
   { path: 'get-vehicle', component: GetVehicleComponent},
   { path: 'update-vehicle', component: UpdateVehicleComponent},
-  { path: 'add-service', component: AddServiceCenterComponent},
-  { path: 'delete-service', component: DeleteServiceCenterComponent},
-  { path: 'get-service', component: GetServiceCenterComponent},
-  { path: 'update-service', component: UpdateServiceCenterComponent},
+  { path: 'add-service', component: AddServiceCenterComponent, canActivate: [managerAccessGuard]},
+  { path: 'delete-service', component: DeleteServiceCenterComponent, canActivate: [managerAccessGuard]},
+  { path: 'get-service', component: GetServiceCenterComponent, canActivate: [managerAccessGuard]},
+  { path: 'update-service', component: UpdateServiceCenterComponent, canActivate: [managerAccessGuard]},
+  { path: 'un-authorized', component:UnAuthorizedComponent }
 ];
 
 @NgModule({
