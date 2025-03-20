@@ -37,4 +37,10 @@ app-sidebar{
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
+  background-image: url("https://img.freepik.com/premium-vector/car-tuning-illustration-concept-white-background_701961-2811.jpg?ga=GA1.1.1626946781.1742452243&semt=ais_hybrid"); 
+  background-size: contain; 
+  background-repeat: no-repeat;
+  background-position: center;
+  overflow-y: auto;
+  overflow-x: hidden;
 }

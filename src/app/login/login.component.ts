@@ -28,9 +28,9 @@ export class LoginComponent {
                 role: role
               };
               this.userService.setUser(userDetails);
-              this.router.navigate(['get-vehicle']);
             }
           );
+          this.router.navigate(['/dashboard']);
         } else {
           this.userService.clearUser();
           alert('Invalid credentials');

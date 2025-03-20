@@ -1,18 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule, Routes } from '@angular/router'; // Import RouterModule
+import { FormsModule } from '@angular/forms';
+import { RouterModule, Routes } from '@angular/router';
 import { AddServiceCenterComponent } from './add-service-center/add-service-center.component';
 import { DeleteServiceCenterComponent } from './delete-service-center/delete-service-center.component';
 import { GetServiceCenterComponent } from './get-service-center/get-service-center.component';
 import { UpdateServiceCenterComponent } from './update-service-center/update-service-center.component';
-import { FormsModule } from '@angular/forms';
-import { managerAccessGuard } from '../Gaurds/manager-access.guard';
 
 const routes: Routes = [
-  { path: 'add-service', component: AddServiceCenterComponent, canActivate: [managerAccessGuard] },
-  { path: 'delete-service', component: DeleteServiceCenterComponent, canActivate: [managerAccessGuard] },
-  { path: 'get-service', component: GetServiceCenterComponent, canActivate: [managerAccessGuard] },
-  { path: 'update-service', component: UpdateServiceCenterComponent, canActivate: [managerAccessGuard] }
+  { path: 'add-service-center', component: AddServiceCenterComponent },
+  { path: 'delete-service-center', component: DeleteServiceCenterComponent },
+  { path: 'get-service-center', component: GetServiceCenterComponent },
+  { path: 'update-service-center', component: UpdateServiceCenterComponent }
 ];
 
 @NgModule({
@@ -25,8 +24,7 @@ const routes: Routes = [
   imports: [
     CommonModule,
     FormsModule,
-    RouterModule.forChild(routes) // Add RouterModule to imports array
-  ],
-  exports: [RouterModule]
+    RouterModule.forChild(routes)
+  ]
 })
 export class ServiceCenterModule { }

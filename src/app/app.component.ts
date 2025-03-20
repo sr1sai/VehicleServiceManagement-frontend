@@ -22,6 +22,7 @@ export class AppComponent implements OnInit {
     const storedUser = localStorage.getItem('user');
     if (storedUser) {
       this.validUser = true;
+      this.router.navigate(['/dashboard']);
     } else {
       this.router.navigate(['/Login']);
     }

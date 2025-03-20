@@ -12,6 +12,7 @@ import { VehicleModule } from './vehicle/vehicle.module';
 import { LoginComponent } from './login/login.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { UnAuthorizedComponent } from './un-authorized/un-authorized.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,7 +20,8 @@ import { UnAuthorizedComponent } from './un-authorized/un-authorized.component';
     SidebarComponent,
     DirectivesDirective,
     LoginComponent,
-    UnAuthorizedComponent
+    UnAuthorizedComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
