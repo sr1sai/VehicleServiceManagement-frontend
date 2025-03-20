@@ -37,7 +37,7 @@ export class UpdateVehicleComponent {
         console.log("Vehicle Data: ", this.vehicle);
   
         // Fetch service centers
-        this.api.GetServiceCenters().subscribe((centers: ServiceCenter[]) => {
+        this.api.GetServiceCentersForVehicle().subscribe((centers: ServiceCenter[]) => {
           this.serviceCenters = centers;
   
           // Map service center data to serviceCenterDict

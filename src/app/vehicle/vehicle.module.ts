@@ -5,8 +5,16 @@ import { AddVehicleComponent } from './add-vehicle/add-vehicle.component';
 import { GetVehicleComponent } from './get-vehicle/get-vehicle.component';
 import { DeleteVehicleComponent } from './delete-vehicle/delete-vehicle.component';
 import { UpdateVehicleComponent } from './update-vehicle/update-vehicle.component';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { UppercasePipe } from '../Pipe/uppercase.pipe';
+
+
+const routes: Routes = [
+  { path: 'add-vehicle', component: AddVehicleComponent },
+  { path: 'delete-vehicle', component: DeleteVehicleComponent },
+  { path: 'get-vehicle', component: GetVehicleComponent },
+  { path: 'update-vehicle', component: UpdateVehicleComponent }
+];
 
 @NgModule({
   declarations: [
@@ -19,7 +27,7 @@ import { UppercasePipe } from '../Pipe/uppercase.pipe';
   imports: [
     CommonModule,
     FormsModule,
-    RouterModule
+    RouterModule.forChild(routes)
   ],
   providers: [
     UppercasePipe
@@ -29,7 +37,8 @@ import { UppercasePipe } from '../Pipe/uppercase.pipe';
     GetVehicleComponent,
     DeleteVehicleComponent,
     UpdateVehicleComponent,
-    UppercasePipe
+    UppercasePipe,
+    RouterModule
   ]
 })
 export class VehicleModule { }

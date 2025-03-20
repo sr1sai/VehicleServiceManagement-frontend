@@ -30,7 +30,7 @@ export class AddVehicleComponent implements OnInit {
   constructor(private curdService: CURDService, private uppercase: UppercasePipe, private api: APIService, private router: Router) {}
 
   ngOnInit() {
-    this.api.GetServiceCenters().subscribe((data: ServiceCenter[]) => {
+    this.api.GetServiceCentersForVehicle().subscribe((data: ServiceCenter[]) => {
       this.serviceCenters = data;
     });
   }

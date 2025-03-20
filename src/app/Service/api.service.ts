@@ -77,5 +77,9 @@ export class APIService {
     return this.http.delete(deleteVehicleByServiceCenterIDUrl, { responseType: 'text' });
    }
 
+   GetServiceCentersForVehicle(): Observable<ServiceCenter[]> { 
+    const serviceCenterUrl = `${this.url}Get/GetServiceCenters`;
+    return this.http.get<ServiceCenter[]>(serviceCenterUrl);
+   }
 
 }

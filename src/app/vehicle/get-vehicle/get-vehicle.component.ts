@@ -21,7 +21,7 @@ export class GetVehicleComponent {
    ngOnInit() {
     console.log(this.serviceCenterDict);
     this.api.GetVehicles().subscribe((data: Vehicle[]) => {
-      this.api.GetServiceCenters().subscribe((centers: ServiceCenter[]) => {
+      this.api.GetServiceCentersForVehicle().subscribe((centers: ServiceCenter[]) => {
         centers.forEach((center: ServiceCenter) => {
           this.serviceCenterDict[center.id] = center.name;
         });
