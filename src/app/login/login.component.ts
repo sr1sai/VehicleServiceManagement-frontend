@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 export class LoginComponent {
   username: string = '';
   password: string = '';
-
+  nextPage: string = '';
   constructor(private api: APIService, private userService: UserService, private router: Router) {}
 
   onSubmit() {
@@ -28,9 +28,12 @@ export class LoginComponent {
                 role: role
               };
               this.userService.setUser(userDetails);
+              this.nextPage = role === 3? '/admin' : '/dashboard';
+              console.log("nextpage", this.nextPage,"<-start value");
+              alert('User validated successfully');
+              this.router.navigate([this.nextPage]);
             }
           );
-          this.router.navigate(['/dashboard']);
         } else {
           this.userService.clearUser();
           alert('Invalid credentials');

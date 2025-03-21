@@ -4,13 +4,16 @@ import { managerAccessGuard } from './Gaurds/manager-access.guard';
 import { LoginComponent } from './login/login.component';
 import { UnAuthorizedComponent } from './un-authorized/un-authorized.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { employeeAccessGuard } from './Gaurds/employee-access.guard';
+import { AdminComponent } from './admin/admin.component';
 
 const routes: Routes = [
   { path: 'Login', component: LoginComponent },
-  { path: 'dashboard', component: DashboardComponent },
+  { path: 'dashboard', component: DashboardComponent, canActivate:[employeeAccessGuard] },
   { 
     path: 'vehicle', 
-    loadChildren: () => import('./vehicle/vehicle.module').then(m => m.VehicleModule)
+    loadChildren: () => import('./vehicle/vehicle.module').then(m => m.VehicleModule),
+    canActivate: [employeeAccessGuard]
   },
   { 
     path: 'service', 
@@ -19,7 +22,7 @@ const routes: Routes = [
   },
   { path: 'un-authorized', component: UnAuthorizedComponent },
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
-  { path: '**', redirectTo: '/dashboard' }
+  {path: 'admin', component: AdminComponent }
 ];
 
 @NgModule({

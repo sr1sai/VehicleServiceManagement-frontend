@@ -1,14 +1,27 @@
 <div class="container mt-5">
   <h2 class="title">Get All Vehicles</h2>
+  <div class="vehicle-count">Showing {{ displayVehicles.length }} vehicles</div>
+  <form>
+    <input type="text" placeholder="VIN" [(ngModel)]="filterTemplate.vin" id="vin" name="vin" (input)="filterVehicles()">
+    <input type="text" placeholder="Model" [(ngModel)]="filterTemplate.model" id="model" name="model" (input)="filterVehicles()">
+    <input type="text" placeholder="Status" [(ngModel)]="filterTemplate.status" id="status" name="status" (input)="filterVehicles()">
+    
+    <select [(ngModel)]="filterTemplate.serviceCenterName" id="serviceCenter" name="serviceCenter" (change)="filterVehicles()"> 
+      <option value="">Select Service Center</option>
+      <option *ngFor="let serviceCenter of serviceCenters" [value]="serviceCenter.id">{{ serviceCenter.name }}</option>
+    </select>
+    
+    <input type="date" [(ngModel)]="filterDate" id="date" name="date" (change)="filterVehicles()">
+  </form>
+  
   <div class="card-display">
-    <div *ngFor="let vehicle of vehicles; let i = index" class="vehicle-card mb-3 p-3 border rounded">
+    <div *ngFor="let vehicle of displayVehicles; let i = index" class="vehicle-card">
       <p><strong>S. No.:</strong> {{ i + 1 }}</p>
-      <p><strong>Service Center ID:</strong> {{ serviceCenterDict[vehicle.service_center_id] }}</p>
+      <p><strong>Service Center:</strong> {{ serviceCenterDict[vehicle.service_center_id] }}</p>
       <p><strong>VIN:</strong> {{ vehicle.vin }}</p>
       <p><strong>Model:</strong> {{ vehicle.model }}</p>
       <p><strong>Status:</strong> {{ vehicle.status }}</p>
       <p><strong>Last Action Date:</strong> {{ vehicle.date | date }}</p>
-      <hr>
     </div>
   </div>
 </div>

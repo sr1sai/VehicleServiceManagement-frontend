@@ -1,0 +1,67 @@
+<div class="container">
+    <h2 class="title">User Management</h2>
+    
+    <div class="form-group">
+      <button class="btn btn-primary" (click)="showForm('add')">Add User</button>
+      <button class="btn btn-primary" (click)="showForm('update')">Update User</button>
+      <button class="btn btn-primary" (click)="showForm('delete')">Delete User</button>
+    </div>
+  
+    <form *ngIf="currentForm === 'add'" (ngSubmit)="AddUser()">
+      <h3>Add User</h3>
+      <div class="form-group">
+        <label for="username">Username:</label>
+        <input type="text" id="username" [(ngModel)]="userAdmin.username" name="username" class="form-control" required>
+      </div>
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" [(ngModel)]="userAdmin.password" name="password" class="form-control" required>
+      </div>
+      <div class="form-group">
+        <label for="role">Role:</label>
+        <select id="role" [(ngModel)]="userAdmin.role" name="role" class="form-control" required>
+          <option value="1">User</option>
+          <option value="2">Manager</option>
+          <option value="3">Admin</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-primary" >Add User</button>
+    </form>
+  
+    <form *ngIf="currentForm === 'update'" (ngSubmit)="UpdateUser()">
+      <h3>Update User</h3>
+      <div class="form-group">
+        <label for="username">Username:</label>
+        <input type="text" id="username" [(ngModel)]="userAdmin.username" name="username" class="form-control" required>
+      </div>
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" [(ngModel)]="userAdmin.password" name="password" class="form-control" required>
+      </div>
+      <div class="form-group">
+        <input type="button" class="btn btn-secondary" (click)="GetRole()" value="Get Role" >
+      </div>
+      <div class="form-group">
+        <label for="role">Role:</label>
+        <select id="role" [(ngModel)]="userAdmin.role" name="role" class="form-control" required>
+          <option value="1">User</option>
+          <option value="2">Manager</option>
+          <option value="3">Admin</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-primary">Update User</button>
+    </form>
+  
+    <form *ngIf="currentForm === 'delete'" (ngSubmit)="DeleteUser()">
+      <h3>Delete User</h3>
+      <div class="form-group">
+        <label for="username">Username:</label>
+        <input type="text" id="username" [(ngModel)]="userAdmin.username" name="username" class="form-control" required>
+      </div>
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" [(ngModel)]="userAdmin.password" name="password" class="form-control" required>
+      </div>
+      <button type="submit" class="btn btn-danger">Delete User</button>
+    </form>
+  </div>

@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { ServiceCenter } from '../../Models/ServiceCenter';
-import { CURDService } from '../../Service/curd.service';
 import { APIService } from '../../Service/api.service';
 
 @Component({
@@ -10,17 +9,23 @@ import { APIService } from '../../Service/api.service';
   styleUrl: './get-service-center.component.css'
 })
 export class GetServiceCenterComponent {
-  servicesCenters: ServiceCenter[] | null = [];
+  filterTemplate = { id: '', name: '' };
+  serviceCenters: ServiceCenter[] = [];
+  displayCenters: ServiceCenter[] = [];
 
-  constructor(private curdService: CURDService, private api: APIService) {}
+  constructor(private api: APIService) {}
 
   ngOnInit(): void {
     this.api.GetServiceCenters().subscribe(data => {
-      data.sort((a, b) => a.id - b.id); // Sort by id
-      this.servicesCenters = data;
+      this.serviceCenters = data.sort((a, b) => a.id - b.id); // Sort by ID
+      this.displayCenters = [...this.serviceCenters];
     });
   }
-  
 
-
+  filterCenters() {
+    this.displayCenters = this.serviceCenters.filter(center =>
+      (this.filterTemplate.id ? center.id.toString().includes(this.filterTemplate.id) : true) &&
+      (this.filterTemplate.name ? center.name.toLowerCase().includes(this.filterTemplate.name.toLowerCase()) : true)
+    );
+  }
 }

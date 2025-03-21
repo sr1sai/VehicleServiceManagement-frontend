@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Vehicle } from '../Models/Vehicle';
 import { ServiceCenter } from '../Models/ServiceCenter';
+import { UserDetails } from '../Models/UserDetails';
 
 @Injectable({
   providedIn: 'root'
@@ -81,5 +82,18 @@ export class APIService {
     const serviceCenterUrl = `${this.url}Get/GetServiceCenters`;
     return this.http.get<ServiceCenter[]>(serviceCenterUrl);
    }
+
+  AddUser(user: UserDetails) {
+    return this.http.post(`${this.url}Add/AddUser`, {"userName":user.username, "password":user.password, "role":user.role},{responseType: 'text'});
+  }
+
+  UpdateUser(username:string,password:string,user: UserDetails) {
+    return this.http.put(`${this.url}Update/UpdateUser?username=${username}&password=${password}`, {"userName":user.username, "password":user.password, "role":user.role},{responseType: 'text'});
+  }
+
+  DeleteUser(username:string,password:string) {
+    let temp:string=`${this.url}Delete/DeleteUser?userName=${username}&password=${password}`;
+    return this.http.delete(temp,{responseType: 'text'});
+  }
 
 }

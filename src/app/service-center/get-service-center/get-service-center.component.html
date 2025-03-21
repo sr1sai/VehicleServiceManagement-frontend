@@ -1,11 +1,19 @@
 <div class="container">
-    <h2 class="title">Get All Service Centers</h2>
-    <div class="card-display">
-      <div *ngFor="let center of servicesCenters; let i = index" class="center-card">
-        <p><strong>S. No.:</strong> {{ i + 1 }}</p>
-        <p><strong>ID:</strong> {{ center.id }}</p>
-        <p><strong>Name:</strong> {{ center.name }}</p>
-        <hr>
+  <h2 class="title">Get All Service Centers</h2>
+  
+  <div class="service-center-count">Showing {{ displayCenters.length }} service centers</div>
+
+  <form>
+      <input type="text" placeholder="Search by ID" [(ngModel)]="filterTemplate.id" id="id" name="id" (input)="filterCenters()" autocomplete="on" >
+      <input type="text" placeholder="Search by Name" [(ngModel)]="filterTemplate.name" id="name" name="name" (input)="filterCenters()" autocomplete="on" >
+  </form>
+
+  <div class="card-display">
+      <div *ngFor="let center of displayCenters; let i = index" class="center-card">
+          <p><strong>S. No.:</strong> {{ i + 1 }}</p>
+          <p><strong>ID:</strong> {{ center.id }}</p>
+          <p><strong>Name:</strong> {{ center.name }}</p>
+          <hr>
       </div>
-    </div>
   </div>
+</div>

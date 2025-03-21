@@ -1,17 +1,21 @@
 <div class="container">
   <h2 class="title">Update Vehicle</h2>
   <form>
-      <div class="form-group">
-        <label for="serviceCenter">Service Center:</label>
-        <select id="serviceCenter" [(ngModel)]="serviceCenter.name" name="serviceCenter" class="form-control" required>
-          <option *ngFor="let center of serviceCenters" [value]="center.name">{{ center.name }}</option>
-        </select>
-      </div>
-      <button (click)="GetServiceCenterDetails()" class="btn btn-secondary mt-2">Get Service Center</button>
+    <div class="form-group">
+      <label for="serviceCenter">Service Center:</label>
+      <select id="serviceCenter" [(ngModel)]="serviceCenter.name" name="serviceCenter" 
+              class="form-control" required autocomplete="off">
+        <option *ngFor="let center of serviceCenters" [value]="center.name">{{ center.name }}</option>
+      </select>
+    </div>
+    <button (click)="GetServiceCenterDetails()" class="btn btn-secondary mt-2">Get Service Center</button>
+
     <div class="form-group">
       <label for="name">Service Center Name:</label>
-      <input type="text" id="name" [(ngModel)]="selectedServiceCenter.name" name="name" value="{{selectedServiceCenter.name}}" class="form-control" required>
+      <input type="text" id="name" [(ngModel)]="selectedServiceCenter.name" name="name" 
+             class="form-control" required autocomplete="off">
     </div>
+
     <button (click)="UpdateServiceCenter()" class="btn btn-primary">Update Vehicle</button>
   </form>
 </div>

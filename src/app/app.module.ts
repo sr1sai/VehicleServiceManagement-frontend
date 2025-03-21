@@ -13,6 +13,7 @@ import { LoginComponent } from './login/login.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { UnAuthorizedComponent } from './un-authorized/un-authorized.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { AdminComponent } from './admin/admin.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,7 +22,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     DirectivesDirective,
     LoginComponent,
     UnAuthorizedComponent,
-    DashboardComponent
+    DashboardComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
