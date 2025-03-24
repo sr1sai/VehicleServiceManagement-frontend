@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Vehicle } from '../Models/Vehicle';
 import { ServiceCenter } from '../Models/ServiceCenter';
@@ -13,87 +13,130 @@ export class APIService {
   constructor(private http: HttpClient) { }
   private url: string = "http://localhost:5235/api/";
 
-  // Get
-  Get(url: string): Observable<any> {
-    return this.http.get(url);
+  // Function to get the token from localStorage
+  private getAuthToken(): string | null {
+    return localStorage.getItem('authToken'); // Retrieve the token from localStorage
   }
 
-  ValidateUser(username: string, password: string): Observable<boolean> {
+  // Function to create headers with Bearer token
+  private createAuthorizationHeaders(): HttpHeaders {
+    const token = localStorage.getItem('authToken'); // Retrieve the token from localStorage
+    return new HttpHeaders({
+      'Authorization': token ? `Bearer ${token}` : '' // Attach the token to the Authorization header
+    });
+  }
+  
+
+  // Get
+  Get(url: string): Observable<any> {
+    const headers = this.createAuthorizationHeaders(); // Get headers with token
+    return this.http.get(url, { headers }); // Add headers to the GET request
+  }
+
+  ValidateUser(username: string, password: string): Observable<any> {
     const validateUrl = `${this.url}Get/ValidateUser?username=${username}&password=${password}`;
-    return this.http.get<boolean>(validateUrl);
+    return this.http.get<any>(validateUrl);
   }
 
   GetUserRole(username: string, password: string): Observable<number> {
     const roleUrl = `${this.url}Get/GetUserRole?username=${username}&password=${password}`;
-    return this.http.get<number>(roleUrl);
+    const headers = this.createAuthorizationHeaders(); // Add Authorization header
+    return this.http.get<number>(roleUrl, { headers });
   }
 
   GetVehicles(): Observable<Vehicle[]> {
     const vehicleUrl = `${this.url}Get/GetVehicles`;
-    return this.http.get<Vehicle[]>(vehicleUrl);
+    const headers = this.createAuthorizationHeaders(); // Add Authorization header
+    return this.http.get<Vehicle[]>(vehicleUrl, { headers });
   }
 
-  GetServiceCenters(): Observable<ServiceCenter[]> { 
+  GetServiceCenters(): Observable<ServiceCenter[]> {
     const serviceCenterUrl = `${this.url}Get/GetServiceCenters`;
-    return this.http.get<ServiceCenter[]>(serviceCenterUrl);
-   }
+    const headers = this.createAuthorizationHeaders(); // Add Authorization header
+    return this.http.get<ServiceCenter[]>(serviceCenterUrl, { headers });
+  }
 
-   AddVehicle(vehicle:Vehicle){
+  GetServiceCentersForVehicle(): Observable<ServiceCenter[]> {
+    const serviceCenterUrl = `${this.url}Get/GetServiceCenters`;
+    const headers = this.createAuthorizationHeaders(); // Add Authorization header
+    return this.http.get<ServiceCenter[]>(serviceCenterUrl, { headers });
+  }
+
+  // AddVehicle
+  AddVehicle(vehicle: Vehicle) {
     const addVehicleUrl = `${this.url}Add/AddVehicle`;
-    return this.http.post(addVehicleUrl, vehicle, { responseType: 'text' });
-   }
+    const headers = this.createAuthorizationHeaders(); // Add Authorization header
+    return this.http.post(addVehicleUrl, vehicle, { headers, responseType: 'text' });
+  }
 
-   DeleteVehicle(VIN:string){
+  // DeleteVehicle
+  DeleteVehicle(VIN: string) {
     const deleteVehicleUrl = `${this.url}Delete/DeleteVehicleByVIN?VIN=${VIN}`;
-    return this.http.delete(deleteVehicleUrl, { responseType: 'text' });
-   }
+    const headers = this.createAuthorizationHeaders(); // Add Authorization header
+    return this.http.delete(deleteVehicleUrl, { headers, responseType: 'text' });
+  }
 
-   GetVehicleByVIN(VIN:string):Observable<Vehicle>{
+  // GetVehicleByVIN
+  GetVehicleByVIN(VIN: string): Observable<Vehicle> {
     const getVehicleUrl = `${this.url}Get/GetVehicleByVIN?VIN=${VIN}`;
-    return this.http.get<Vehicle>(getVehicleUrl);
-   }
+    const headers = this.createAuthorizationHeaders(); // Add Authorization header
+    return this.http.get<Vehicle>(getVehicleUrl, { headers });
+  }
 
-   UpdateVehicle(vehicle:Vehicle){
+  // UpdateVehicle
+  UpdateVehicle(vehicle: Vehicle) {
     const updateVehicleUrl = `${this.url}Update/UpdateVehicleByVIN?VIN=${vehicle.vin}`;
-    return this.http.put(updateVehicleUrl, vehicle, { responseType: 'text' });
-   }
+    const headers = this.createAuthorizationHeaders(); // Add Authorization header
+    return this.http.put(updateVehicleUrl, vehicle, { headers, responseType: 'text' });
+  }
 
-   AddServcieCenter(serviceCenter:ServiceCenter){
+  // AddServiceCenter
+  AddServcieCenter(serviceCenter: ServiceCenter) {
     const addServiceCenterUrl = `${this.url}Add/AddServiceCenter`;
-    return this.http.post(addServiceCenterUrl, serviceCenter, { responseType: 'text' });
-   }
+    const headers = this.createAuthorizationHeaders(); // Add Authorization header
+    return this.http.post(addServiceCenterUrl, serviceCenter, { headers, responseType: 'text' });
+  }
 
-   UpdateServiceCenter(id:number,serviceCenter:ServiceCenter){
+  // UpdateServiceCenter
+  UpdateServiceCenter(id: number, serviceCenter: ServiceCenter) {
     const updateServiceCenterUrl = `${this.url}Update/UpdateServiceCenterByID?id=${id}`;
-    return this.http.put(updateServiceCenterUrl, serviceCenter, { responseType: 'text' });
-   }
+    const headers = this.createAuthorizationHeaders(); // Add Authorization header
+    return this.http.put(updateServiceCenterUrl, serviceCenter, { headers, responseType: 'text' });
+  }
 
-   DeleteServiceCenter(id:number){
+  // DeleteServiceCenter
+  DeleteServiceCenter(id: number) {
     const deleteServiceCenterUrl = `${this.url}Delete/DeleteServiceCenterByID?id=${id}`;
-    return this.http.delete(deleteServiceCenterUrl, { responseType: 'text' });
-   }
+    const headers = this.createAuthorizationHeaders(); // Add Authorization header
+    return this.http.delete(deleteServiceCenterUrl, { headers, responseType: 'text' });
+  }
 
-   DeleteVehicleByServiceCenterID(id:number){
+  // DeleteVehicleByServiceCenterID
+  DeleteVehicleByServiceCenterID(id: number) {
     const deleteVehicleByServiceCenterIDUrl = `${this.url}Delete/DeleteVehiclesByServiceCenterID?id=${id}`;
-    return this.http.delete(deleteVehicleByServiceCenterIDUrl, { responseType: 'text' });
-   }
+    const headers = this.createAuthorizationHeaders(); // Add Authorization header
+    return this.http.delete(deleteVehicleByServiceCenterIDUrl, { headers, responseType: 'text' });
+  }
 
-   GetServiceCentersForVehicle(): Observable<ServiceCenter[]> { 
-    const serviceCenterUrl = `${this.url}Get/GetServiceCenters`;
-    return this.http.get<ServiceCenter[]>(serviceCenterUrl);
-   }
-
+  // AddUser
   AddUser(user: UserDetails) {
-    return this.http.post(`${this.url}Add/AddUser`, {"userName":user.username, "password":user.password, "role":user.role},{responseType: 'text'});
+    const addUserUrl = `${this.url}Add/AddUser`;
+    const headers = this.createAuthorizationHeaders(); // Add Authorization header
+    return this.http.post(addUserUrl, { "userName": user.username, "password": user.password, "role": user.role }, { headers, responseType: 'text' });
   }
 
-  UpdateUser(username:string,password:string,user: UserDetails) {
-    return this.http.put(`${this.url}Update/UpdateUser?username=${username}&password=${password}`, {"userName":user.username, "password":user.password, "role":user.role},{responseType: 'text'});
+  // UpdateUser
+  UpdateUser(username: string, password: string, user: UserDetails) {
+    const updateUserUrl = `${this.url}Update/UpdateUser?username=${username}&password=${password}`;
+    const headers = this.createAuthorizationHeaders(); // Add Authorization header
+    return this.http.put(updateUserUrl, { "userName": user.username, "password": user.password, "role": user.role }, { headers, responseType: 'text' });
   }
 
-  DeleteUser(username:string,password:string) {
-    let temp:string=`${this.url}Delete/DeleteUser?userName=${username}&password=${password}`;
-    return this.http.delete(temp,{responseType: 'text'});
+  // DeleteUser
+  DeleteUser(username: string, password: string) {
+    const deleteUserUrl = `${this.url}Delete/DeleteUser?userName=${username}&password=${password}`;
+    const headers = this.createAuthorizationHeaders(); // Add Authorization header
+    return this.http.delete(deleteUserUrl, { headers, responseType: 'text' });
   }
 
 }

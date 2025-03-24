@@ -6,6 +6,7 @@ import { UnAuthorizedComponent } from './un-authorized/un-authorized.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { employeeAccessGuard } from './Gaurds/employee-access.guard';
 import { AdminComponent } from './admin/admin.component';
+import { adminAccessGuard } from './Gaurds/admin-access.guard';
 
 const routes: Routes = [
   { path: 'Login', component: LoginComponent },
@@ -21,8 +22,11 @@ const routes: Routes = [
     canActivate: [managerAccessGuard]
   },
   { path: 'un-authorized', component: UnAuthorizedComponent },
+  {path: 'admin', component: AdminComponent, canActivate: [adminAccessGuard]},
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
-  {path: 'admin', component: AdminComponent }
+
+
+  {path: '**', redirectTo: '/dashboard'}
 ];
 
 @NgModule({
